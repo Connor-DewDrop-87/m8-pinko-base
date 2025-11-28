@@ -4,12 +4,8 @@ public class Player : MonoBehaviour
 {
     public float speed = 1;
     public GameObject disc;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+    public CameraFollow cameraFollow;
+    private GameObject activeDisc;
     // Update is called once per frame
     void Update()
     {
@@ -24,11 +20,12 @@ public class Player : MonoBehaviour
     }
     void DropDisc()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && activeDisc == null)
         {
                 Vector3 position = transform.position;
                 Quaternion rotation = transform.rotation;
-                Instantiate(disc, position, rotation);
+                activeDisc = Instantiate(disc, position, rotation);
+                cameraFollow.FollowDisc(activeDisc);
             
         }
     }
