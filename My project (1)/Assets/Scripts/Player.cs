@@ -1,8 +1,13 @@
 using UnityEngine;
 
+
+
+
 public class Player : MonoBehaviour
 {
     public float speed = 1;
+    public float direction = 2;
+    public float screenEdge = 10;
     public GameObject disc;
     public CameraFollow cameraFollow;
     private GameObject activeDisc;
@@ -14,9 +19,17 @@ public class Player : MonoBehaviour
     }
     void Move()
     {
-        float movementX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        Vector3 offSet = new Vector3(movementX, 0, 0);
-        transform.position += offSet;
+        if (activeDisc == null)
+        {
+            float movementX = direction * Time.deltaTime * speed;
+            Vector3 offSet = new Vector3(movementX, 0, 0);
+            transform.position += offSet;
+            // Once the edge is hit, reverse the movement of the player
+            if (transform.position.x >= screenEdge || transform.position.x <= screenEdge * -1)
+            {
+                direction *= -1;
+            }
+        }
     }
     void DropDisc()
     {
