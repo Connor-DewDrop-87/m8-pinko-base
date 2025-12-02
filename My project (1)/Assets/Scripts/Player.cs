@@ -35,11 +35,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && activeDisc == null)
         {
-                Vector3 position = transform.position;
+                Vector3 position = transform.position-new Vector3(0,2,0);
                 Quaternion rotation = transform.rotation;
                 activeDisc = Instantiate(disc, position, rotation);
                 cameraFollow.FollowDisc(activeDisc);
-            
         }
     }
 }
