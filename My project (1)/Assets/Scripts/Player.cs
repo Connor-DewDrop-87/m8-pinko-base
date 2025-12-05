@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public GameObject disc;
     public CameraFollow cameraFollow;
     private GameObject activeDisc;
+    public DiscUI DiscCounter;
     // Update is called once per frame
     void Update()
     {
@@ -41,10 +42,11 @@ public class Player : MonoBehaviour
                 activeDisc = Instantiate(disc, position, rotation);
                 cameraFollow.FollowDisc(activeDisc);
                 discsAvailable--;
+                DiscCounter.AddOrSubtractDisc(-1);
         }
     }
-    public int getDiscs()
+    public void AddDisc(int addedDiscs)
     {
-        return discsAvailable;
+        discsAvailable += addedDiscs;
     }
 }

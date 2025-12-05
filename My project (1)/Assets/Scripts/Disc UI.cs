@@ -9,11 +9,17 @@ public class DiscUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //discsAvailable = DiscCounter.getDiscs;
+        UpdateDiscNumber();
+    }
+
+    public void AddOrSubtractDisc(int DiscAdd)
+    {
+        discsAvailable += DiscAdd;
+        UpdateDiscNumber();
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateDiscNumber()
     {
         DiscCount.text = $"DISCS: {discsAvailable}";
     }
