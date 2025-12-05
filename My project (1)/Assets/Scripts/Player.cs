@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float speed = 1;
     public float direction = 2;
     public float screenEdge = 10;
+    public int discsAvailable = 10;
     public GameObject disc;
     public CameraFollow cameraFollow;
     private GameObject activeDisc;
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     }
     void Move()
     {
-        if (activeDisc == null)
+        if (activeDisc == null && discsAvailable>0)
         {
             float movementX = direction * Time.deltaTime * speed;
             Vector3 offSet = new Vector3(movementX, 0, 0);
@@ -33,12 +34,17 @@ public class Player : MonoBehaviour
     }
     void DropDisc()
     {
-        if (Input.GetButtonDown("Fire1") && activeDisc == null)
+        if (Input.GetButtonDown("Fire1") && activeDisc == null && discsAvailable>0)
         {
                 Vector3 position = transform.position-new Vector3(0,2,0);
                 Quaternion rotation = transform.rotation;
                 activeDisc = Instantiate(disc, position, rotation);
                 cameraFollow.FollowDisc(activeDisc);
+                discsAvailable--;
         }
+    }
+    public int getDiscs()
+    {
+        return discsAvailable;
     }
 }

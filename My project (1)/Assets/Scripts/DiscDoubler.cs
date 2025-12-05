@@ -18,7 +18,7 @@ public class DiscDoubler : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Vector3 position = transform.position+new Vector3(2,0,0);
+        Vector3 position = transform.position+new Vector3(Random.Range(-2,2),0,0);
         Quaternion rotation = transform.rotation;
         activeDisc = Instantiate(disc, position, rotation);
         Vector3 randomPosition = new Vector3(randomX[Random.Range(0,randomX.Length)], randomY[Random.Range(0, randomY.Length)], 0);
